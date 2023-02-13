@@ -10,7 +10,9 @@ Assignment - 1 : Array Data Structure
 
 5. In question 1, define a method to insert a new element at specified index
 
-6. In question 1, define a method to edit an element at specified index. 7. In question 1, define a method to delete an element at specified index.
+6. In question 1, define a method to edit an element at specified index.
+
+7. In question 1, define a method to delete an element at specified index.
 
 8. In question 1, define a method to check if the array is full by returning true or false.
 
