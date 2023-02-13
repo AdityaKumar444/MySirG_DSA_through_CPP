@@ -10,7 +10,9 @@ Assignment - 3 : Dynamic Arrays
 
 5. In question 1, define a method which returns the current capacity of the array.
 
-6. In the question 1, add a method to check whether an array is empty or not by returning True or False. 7. In question 1, define a method to append a new element in the array
+6. In the question 1, add a method to check whether an array is empty or not by returning True or False.
+
+7. In question 1, define a method to append a new element in the array
 
 8. In question 1, define a method to insert a new element at specified index
 
@@ -20,7 +22,9 @@ Assignment - 3 : Dynamic Arrays
 
 11. In question 1, define a method to check if the array is full by returning true or false.
 
-12. In question 1, define a method to get element at specified index. 13. In question 1, define a method to count number of elements present in the array.
+12. In question 1, define a method to get element at specified index. 
+
+13. In question 1, define a method to count number of elements present in the array.
 
 14. In question 1, define a destructor to deallocate the memory of array.
 
