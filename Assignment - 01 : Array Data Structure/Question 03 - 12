@@ -97,7 +97,7 @@ void Array::del(int index)
 {
     if(last_index==-1)
     cout << "empty array\n" ;
-    else if(index<0 || index>last_index+1)
+    else if(index<0 || index>last_index)
     cout << "invalid index\n" ;
     else
     {
