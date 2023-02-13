@@ -1,0 +1,9 @@
+#include<bits/stdc++.h>
+using namespace std ;
+class Array
+{
+    private:
+        int capacity , last_index=-1 , *ptr ;
+    public:
+        Array(){}
+};
