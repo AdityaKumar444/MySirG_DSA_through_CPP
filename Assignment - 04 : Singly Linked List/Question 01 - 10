@@ -56,9 +56,7 @@ void SLL::deleteSpecific(node *t)
     else
     {
         while(traverse->next!=t)
-        {
-            traverse = traverse->next ;
-        }
+        { traverse = traverse->next ; }
         traverse->next = t->next ;
         delete t ;
     }
@@ -128,6 +126,7 @@ void SLL::insertAtLast(int item)
     start = x ;
     else
     {
+        temp = start ;
         while(temp->next!=NULL)
         temp = temp->next ;
         temp->next = x ;
