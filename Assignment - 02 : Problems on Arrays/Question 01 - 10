@@ -1,84 +1,80 @@
-#include<bits/stdc++.h>
+#include"arrayADT.cpp"
 using namespace std ;
-class Array
+class ExtendedArray : public Array 
 {
-    private:
-        int capacity , last_index=-1 , *ptr ;
-    public:
+    public :
+        ExtendedArray() : Array() {}
+        ExtendedArray(int cap) : Array(cap) {}
         void sort();
-        void swap(int,int);
-        bool emptyOrNot();
-        bool fullOrNot();
-        void append(int);
-        void removeDuplicate();
-        int getElement(int);
         int Greatest();
-        void del(int);
-        void insert(int , int);
-        int findElement(int);
         int Smallest();
         int sumOfAllElements();
         double average();
-        void display();
         void rotationRight();
+        void removeDuplicate();
         int secondLargest();
-        Array(){}
-        Array(int n)
-        {
-            capacity = n ;
-            ptr = new int[capacity];
-        }
-        void edit(int index , int element)
-        {
-            if(index>=0 && index<=last_index)
-            ptr[index] = element ; 
-        }
-        int countElements()
-        {
-            return (last_index+1) ;
-        }
-        ~Array()
-        {
-            delete[]ptr;
-        }
-};
-bool Array::emptyOrNot()
+        void swap(int,int);
+}; 
+void ExtendedArray::sort()
 {
-    if(last_index==-1)
-    return true ;
-    else
-    return false ;
-}
-bool Array::fullOrNot()
-{
-    if(last_index==(capacity-1))
-    return true ;
-    else
-    return false ;
-}
-void Array::append(int element)
-{
-    if(last_index==capacity-1)
-    cout << "no space available" << endl;
-    else
+    int temp ;
+    for(int i=0 ; i<count() ; i++)
     {
-        last_index++;
-        ptr[last_index] = element ;
+        for(int j=i+1 ; j<count() ; j++)
+        {
+            if(getElement(i)>getElement(j))
+            {
+                temp = getElement(j);
+                edit(j,getElement(i));
+                edit(i,temp);
+            }
+        }
     }
 }
-void Array::display()
+int ExtendedArray::Greatest()
 {
-    for(int i=0 ; i<=last_index ; i++)
-    cout << ptr[i] << " " ;
-    cout << endl ;
+    int greatest = -2147483647 ;
+    for (int i=0; i<count(); i++)
+    {
+        if(greatest<getElement(i))
+        greatest = getElement(i);
+    }
+    return greatest ;
 }
-int Array::secondLargest()
+int ExtendedArray::Smallest()
 {
-    sort();
-    int s_large = ptr[last_index-1] ;
-    return s_large ;
+    int smallest = 2147483647 ;
+    for (int i=0; i<count(); i++)
+    {
+        if(smallest>getElement(i))
+        smallest = getElement(i);
+    }
+    return smallest ;
 }
-void Array::removeDuplicate()
+int ExtendedArray::sumOfAllElements()
+{
+    int i , sum = 0 ;
+    for (i=0; i<count(); i++)
+    sum = sum + getElement(i);
+    return sum ;
+}
+double ExtendedArray::average()
+{
+    double avg = 0 , total = count() ;
+    avg = sumOfAllElements() / total ;
+    return avg ;
+}
+void ExtendedArray::rotationRight()
+{
+    int temp ;
+    for (int i = count()-1 ; i>=1 ; i--)
+    {
+        temp = getElement(i) ;
+        edit(i,getElement(i-1)) ;
+        edit(i-1,temp);
+    }
+}
+void ExtendedArray::removeDuplicate()
 {
     bool x = emptyOrNot() ;
     if(x==true)
@@ -88,15 +84,15 @@ void Array::removeDuplicate()
         int cap = this->Greatest();
         cap = cap + 1 ;
         int *p {new int[cap]{}};
-        for(int i=0 ; i<=last_index ; i++)
+        for(int i=0 ; i<count() ; i++)
         {
-            p[ptr[i]]++ ;
+            p[getElement(i)]++ ;
         }
-        for(int i=last_index ; i>=0 ; i--)
+        for(int i=count()-1 ; i>=0 ; i--)
         {
             for(int j=0 ; j<cap ; j++)
             {
-                if(ptr[i]==j)
+                if(getElement(i)==j)
                 {
                     if(p[j]>1)
                     {
@@ -109,117 +105,16 @@ void Array::removeDuplicate()
         delete[] p ;
     }
 }
-int Array::getElement(int index)
+int ExtendedArray::secondLargest()
 {
-    if(index>=0 && index<=last_index)
-    return ptr[index];
-    else
-    return -1 ;
+    sort();
+    int s_large = getElement(count()-2) ;
+    return s_large ;
 }
-void Array::rotationRight()
+void ExtendedArray::swap(int index1 , int index2)
 {
     int temp ;
-    for (int i = last_index ; i>=1 ; i--)
-    {
-        temp = ptr[i-1];
-        ptr[i-1] = ptr[i] ;
-        ptr[i] = temp ;
-    }
-}
-int Array::findElement(int num)
-{
-    for(int i=0 ; i<=last_index ; i++)
-    {
-        if(ptr[i]==num)
-        return i ;
-    }
-    return -1 ;
-}
-void Array::insert(int index , int element)
-{
-    if(last_index==capacity-1)
-    cout << "no space available" << endl;
-    else if(index<0 || index>last_index+1)
-    cout << "invalid index\n" ;
-    else
-    {
-        for(int i=last_index+1 ; i>index ; i--)
-        ptr[i] = ptr[i-1] ;   
-        ptr[index] = element ; 
-        last_index++;
-    }
-}
-int Array::sumOfAllElements()
-{
-    int i , sum = 0 ;
-    for (i=0; i<=last_index; i++)
-    sum = sum + ptr[i];
-    return sum ;
-}
-double Array::average()
-{
-    double avg = 0 , total = countElements() ;
-    avg = sumOfAllElements() / total ;
-    return avg ;
-}
-void Array::sort()
-{
-    int temp ;
-    for(int i=0 ; i<=last_index ; i++)
-    {
-        for(int j=i+1 ; j<=last_index ; j++)
-        {
-            if(ptr[i]>ptr[j])
-            {
-                temp = ptr[j];
-                ptr[j] = ptr[i];
-                ptr[i] = temp;
-            }
-        }
-    }
-}
-int Array::Greatest()
-{
-    int greatest = -2147483647 ;
-    for (int i=0; i<=last_index; i++)
-    {
-        if(greatest<ptr[i])
-        greatest = ptr[i];
-    }
-    return greatest ;
-}
-int Array::Smallest()
-{
-    int smallest = 2147483647 ;
-    for (int i=0; i<=last_index; i++)
-    {
-        if(smallest>ptr[i])
-        smallest = ptr[i];
-    }
-    return smallest ;
-}
-void Array::del(int index)
-{
-    if(last_index==-1)
-    cout << "empty array\n" ;
-    else if(index<0 || index>last_index+1)
-    cout << "invalid index\n" ;
-    else
-    {
-        for(int i=index ; i<last_index ; i++)
-        ptr[i] = ptr[i+1] ;
-        last_index = last_index - 1 ;
-    }
-}
-void Array::swap(int index1 , int index2)
-{
-    int temp ;
-    temp = ptr[index1] ;
-    ptr[index1] = ptr[index2] ;
-    ptr[index2] = temp ;
-}
-int main () 
-{
-    Array a(7);
-    return 0 ;
+    temp = getElement(index1) ;
+    edit(index1,getElement(index2)) ;
+    edit(index2,temp);
 }
