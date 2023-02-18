@@ -16,16 +16,12 @@ class Array
         void display();
         int arraySize();
         int count();
+        void edit(int , int);
         Array(){}
         Array(int n)
         {
             capacity = n ;
             ptr = new int[capacity];
-        }
-        void edit(int index , int element)
-        {
-            if(index>=0 && index<=last_index)
-            ptr[index] = element ; 
         }
         ~Array()
         {
@@ -35,6 +31,11 @@ class Array
 int Array::count()
 {
     return (last_index+1);
+}
+void Array::edit(int index , int element)
+{
+    if(index>=0 && index<=last_index)
+    ptr[index] = element ; 
 }
 int Array::arraySize()
 {
