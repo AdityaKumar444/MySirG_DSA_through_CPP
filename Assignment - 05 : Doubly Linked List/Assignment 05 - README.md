@@ -1,6 +1,6 @@
 Assignment - 5 : Doubly Linked List
 
-1. Define a class DLL to implement singly linked list data structure with member variable start pointer of type node.
+1. Define a class DLL to implement doubly linked list data structure with member variable start pointer of type node.
 
 2. In question 1, define a constructor to initialise start pointer with NULL.
 
