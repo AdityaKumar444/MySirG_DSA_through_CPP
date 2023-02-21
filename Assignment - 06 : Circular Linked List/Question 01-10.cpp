@@ -67,7 +67,7 @@ node * CLL::search(int item)
                 return traverse ;
             traverse = traverse->next ;
 
-        }while(traverse!=last->next);
+        }while(traverse!=last->next );
     }
     return NULL ;
 }
@@ -99,16 +99,16 @@ void CLL::deleteLast()
 {
     if(last!=NULL)
     {
-        if (last==last->next)
+        node *temp = last->next ;
+        while(temp->next!=last)
+            temp = temp->next ;
+        if (temp==last)
         {
             delete last ;
             last = NULL ;
         }
         else
         {
-            node *temp = last->next ;
-            while(temp->next!=last)
-                temp = temp->next ;
             temp->next = last->next ;
             delete last ;
             last = temp ;
