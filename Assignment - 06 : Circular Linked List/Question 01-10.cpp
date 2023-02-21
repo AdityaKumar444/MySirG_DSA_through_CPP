@@ -60,14 +60,14 @@ node * CLL::search(int item)
     node *traverse ;
     if(last!=NULL)
     {
-        traverse = last ;
+        traverse = last->next ;
         do
         {
             if(traverse->data==item)
                 return traverse ;
             traverse = traverse->next ;
 
-        }while(traverse!=last);
+        }while(traverse!=last->next);
     }
     return NULL ;
 }
