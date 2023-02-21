@@ -117,7 +117,7 @@ void CLL::deleteLast()
 }
 void CLL::deleteSpecific(node *temp)
 {
-    if(last!=NULL)
+    if(temp!=NULL)
     {
         node *t = last->next ;
         while(t->next!=temp)
