@@ -119,16 +119,14 @@ void CLL::deleteSpecific(node *temp)
 {
     if(last!=NULL)
     {
-        {
-            node *t = last->next ;
-            while(t->next!=temp)
-                t = t->next ;
-            t->next = temp->next ;
-            if(t==temp)
-                last = NULL ;
-            else if(temp==last)
-                last = t ;
-            delete temp ;
-        }
+        node *t = last->next ;
+        while(t->next!=temp)
+            t = t->next ;
+        t->next = temp->next ;
+        if(t==temp)
+            last = NULL ;
+        else if(temp==last)
+            last = t ;
+        delete temp ;
     }
 }
