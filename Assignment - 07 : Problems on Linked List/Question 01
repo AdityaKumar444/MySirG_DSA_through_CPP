@@ -1,0 +1,19 @@
+#include "SLL.cpp"
+class ExtendedSLL : public SLL
+{
+    public:
+        ExtendedSLL() : SLL() {}
+        int count();
+};
+int ExtendedSLL::count()
+{
+    node *traverse ;
+    int cnt = 0 ;
+    traverse = getStart() ;
+    while(traverse!=NULL)
+    {
+        cnt++ ;
+        traverse = traverse->next ;
+    }
+    return cnt ;
+}
