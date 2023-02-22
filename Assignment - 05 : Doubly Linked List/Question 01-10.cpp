@@ -69,7 +69,7 @@ node * DLL::search(int item)
             traverse = traverse->next ;
         }
     }
-    return traverse ;
+    return NULL ;
 }
 void DLL::insertAfter(node * t , int item)
 {
