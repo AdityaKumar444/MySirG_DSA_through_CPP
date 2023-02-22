@@ -1,0 +1,24 @@
+// SLL.cpp is provided in folder
+
+#include "SLL.cpp"
+class ExtendedSLL : public SLL
+{
+    public:
+        ExtendedSLL() : SLL() {}
+        node * findMiddle();
+};
+node * ExtendedSLL::findMiddle()
+{
+    node *mid = NULL ;
+    if(getStart()!=NULL)
+    {
+        node *t1 = getStart() , *t2 = getStart() ;
+        while(t2!=NULL && t2->next!=NULL)
+        {
+            t1 = t1->next ;
+            t2 = t2->next->next ;
+        }   
+        mid = t1 ;
+    }
+    return mid ;
+}
