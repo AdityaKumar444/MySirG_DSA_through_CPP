@@ -9,16 +9,14 @@ class ExtendedSLL : public SLL
 };
 bool ExtendedSLL::checkLoop()
 {
-    if(getStart()!=NULL && getStart()->next!=NULL)
+    node *slow = getStart() , *fast = getStart();
+    do
     {
-        node *slow = getStart() , *fast = getStart();
-        while(fast!=NULL && fast->next!=NULL)
-        {
-            slow = slow->next ;
+        if(fast==NULL || fast->next==NULL)
+            return false ;
+        else
             fast = fast->next->next ;
-            if(slow==fast)
-                return true ; 
-        }
-    }
-    return false ;
+        slow = slow->next ;
+    }while(slow!=fast);
+    return true ;
 }
