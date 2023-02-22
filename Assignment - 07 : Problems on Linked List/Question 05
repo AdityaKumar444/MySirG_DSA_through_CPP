@@ -1,0 +1,44 @@
+// SLL.cpp is provided in folder
+
+#include "SLL.cpp"
+class ExtendedSLL : public SLL
+{
+    public:
+        ExtendedSLL() : SLL() {}
+        bool checkLoop();
+        int lengthOFLoop();
+};
+bool ExtendedSLL::checkLoop()
+{
+    node *slow = getStart() , *fast = getStart();
+    do
+    {
+        if(fast==NULL || fast->next==NULL)
+            return false ;
+        else
+            fast = fast->next->next ;
+        slow = slow->next ;
+    }while(slow!=fast);
+    return true ;
+}
+int ExtendedSLL::lengthOFLoop()
+{
+    int count = 1 ;
+    node *slow , *fast ;
+    if(checkLoop)
+    {
+        slow = fast = getStart();
+        do
+        {
+            fast = fast->next->next;
+            slow = slow->next ;
+        } while (slow!=fast);
+        while(slow->next!=fast)
+        {
+            slow = slow->next ;
+            count++;
+        }
+        return count ;
+    }
+    return 0 ;
+}
