@@ -1,0 +1,29 @@
+// SLL.cpp is provided in folder
+
+#include "SLL.cpp"
+class ExtendedSLL : public SLL
+{
+    public:
+        ExtendedSLL() : SLL() {}
+        void sort(); 
+};
+void ExtendedSLL::sort()
+{
+    if(getStart()!=NULL && getStart()->next!=NULL)
+    {
+        node *t1 , *t2 ;
+        int temp ;
+        for(t1 = getStart() ; t1->next!=NULL ; t1 = t1->next)
+        {
+            for(t2 = t1->next ; t2!=NULL ; t2 = t2->next)
+            {
+                if(t1->data > t2->data)
+                {
+                    temp = t1->data ;
+                    t1->data = t2->data ;
+                    t2->data = temp ;
+                }
+            }
+        }
+    }
+}
