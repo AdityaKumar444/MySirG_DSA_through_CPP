@@ -131,5 +131,5 @@ node * SLL::search(int item)
         return traverse ;
         traverse = traverse->next ;
     }
-    return traverse ;
+    return NULL ;
 }
