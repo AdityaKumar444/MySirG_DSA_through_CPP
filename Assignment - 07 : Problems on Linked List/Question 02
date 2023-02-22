@@ -1,0 +1,29 @@
+// SLL.cpp is provided in folder
+
+#include "SLL.cpp"
+class ExtendedSLL : public SLL
+{
+    public:
+        ExtendedSLL() : SLL() {}
+        void reverse();
+};
+void ExtendedSLL::reverse()
+{
+    node *t1 , *t2 , *t3 ;
+    if(getStart()->next!=NULL)
+    {
+        t1 = getStart();
+        t2 = t1->next ;
+        t3 = t2->next ;
+        t1->next = NULL ;
+        do
+        {
+            t2->next = t1 ;
+            t1 = t2 ;
+            t2 = t3 ;
+            if(t3!=NULL)
+                t3 = t3->next ;
+        }while(t2!=NULL);
+        setStart(t1);
+    }
+}
