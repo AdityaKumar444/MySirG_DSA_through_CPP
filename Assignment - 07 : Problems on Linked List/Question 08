@@ -1,0 +1,120 @@
+#include<iostream>
+using namespace std ;
+struct node
+{
+    int num ;
+    int pow ;
+    node *next ;  
+};
+class polynomial
+{
+    private:
+        node *start ;
+    public:
+        polynomial(){ start = NULL ; }
+        void insert(int,int);
+        void deleteFirst();
+        void deleteSpecific(node *);
+        node *search(int,int);
+        node * getStart(){ return start ; }
+        void display();
+        ~polynomial()
+        {
+            while(start!=NULL)
+                deleteFirst();
+        }
+};
+void polynomial::insert(int coe , int exp)
+{
+    node *n = new node ;
+    n->num = coe ;
+    n->pow = exp ;
+    node *t ;
+    if(start==NULL)
+    {
+        n->next = NULL ;
+        start = n ;
+    }
+    else
+    {
+        t = start ;
+        if(exp > t->pow)
+        {
+            n->next = t ;
+            start = n ;
+        }
+        else
+        {
+            while(t!=NULL)
+            {
+                if(exp < t->pow && t->next == NULL)
+                {
+                    t->next = n ;
+                    n->next = NULL ;
+                }
+                else if(exp < t->pow && exp > t->next->pow)
+                {    
+                    n->next = t->next ;
+                    t->next = n ;
+                }
+                t = t->next ;
+            }
+        }
+    }
+}
+void polynomial::deleteFirst()
+{
+    if(start!=NULL)
+    {
+        node *temp = start ;
+        start = temp->next ;
+        delete temp ;
+    }
+}
+void polynomial::deleteSpecific(node *temp)
+{
+    if(start!=NULL)
+    {
+        if(start->next==NULL)
+            start = NULL ;
+        else
+        {
+            node * t = start ;
+            while(t->next!=temp)
+                t = t->next ;
+            t->next = temp->next ;
+        }
+        delete temp ;
+    }
+}
+node * polynomial::search(int coeff , int expo)
+{
+    node *t ;
+    if(start!=NULL)
+    {
+        t = start ;
+        while(t!=NULL)
+        {
+            if(t->num==coeff && t->pow==expo)
+                return t ;
+            t = t->next ;
+        }
+    }
+    return NULL ;
+}
+void polynomial::display()
+{
+    if(start!=NULL)
+    {
+        node *t = start ;
+        while(t!=NULL)
+        {
+            if(t->pow!=0 && t->next!=NULL)
+                cout << t->num << "x^" << t->pow << " + " ;
+            else    
+                cout << t->num ; 
+            t = t->next ;
+        }
+    }
+    cout << endl ;
+}
