@@ -1,0 +1,40 @@
+// SLL.cpp is provided in folder
+
+#include "SLL.cpp"
+class ExtendedSLL : public SLL
+{
+    public:
+        ExtendedSLL() : SLL() {}
+        friend ExtendedSLL merge(node * , node *);
+};
+ExtendedSLL merge(node *t1 , node *t2)
+{
+    ExtendedSLL obj ;
+    if(t1!=NULL && t2!=NULL)
+    {
+        while(t1!=NULL && t2!=NULL)
+        {
+            if(t1->data > t2->data)
+            {
+                obj.insertAtLast(t2->data);
+                t2 = t2->next ;
+            }
+            if(t2->data > t1->data)
+            {
+                obj.insertAtLast(t1->data);
+                t1 = t1->next ;
+            }
+        }
+        if(t1!=NULL)
+        {
+            obj.insertAtLast(t1->data);
+            t1 = t1->next ;
+        }
+        if(t2!=NULL)
+        {
+            obj.insertAtLast(t2->data);
+            t2 = t2->next ;
+        }
+    }
+    return obj ;
+}
