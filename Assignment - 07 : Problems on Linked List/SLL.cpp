@@ -11,23 +11,23 @@ class SLL
     private:
         node *start ;
     public:
-        SLL()
-        {
-            start = NULL ;
-        }
+        SLL(){ start = NULL ; }
         void insertAtStart(int);
         void insertAtLast(int);
-        void insertAfterSpecified(int , node *);
+        void insertAfter(int , node *);
         void deleteFirst();
         void deleteLast();
         void deleteSpecific(node*);
         void display();
         node * search(int);
-        node * getStart() { return start ; }
+        node *getStart() { return start ;}
+        void setStart(node *x) { start = x ;}
         ~SLL()
         {
             while(start!=NULL)
-               deleteFirst();
+            {
+                deleteFirst();
+            }
         }
 };
 void SLL::display()
@@ -41,78 +41,19 @@ void SLL::display()
     }
     cout << endl ;
 }
-void SLL::insertAtStart(int item)
-{
-    node *x = new node ;
-    x->data = item ;
-    x->next = start ;
-    start = x ;
-}
-void SLL::insertAtLast(int item)
-{
-    node *x = new node ;
-    node * traverse ;
-    x->data = item ;
-    x->next = NULL ;
-    if(start==NULL)
-    start = x ;
-    else
-    {
-        traverse = start ;
-        while(traverse->next!=NULL)
-        {
-            traverse = traverse->next ;
-        }
-        traverse->next = x ;
-    }
-}
-void SLL::insertAfterSpecified(int item , node *t)
-{
-    node *x = new node ;
-    x->data = item ;
-    x->next = t->next ;
-    t->next = x ;
-}
-void SLL::deleteFirst()
-{
-    node * temp ;
-    if(start!=NULL)
-    {
-        temp = start->next ;
-        delete start ;
-        start = temp ;
-    }
-}
-void SLL::deleteLast()
-{
-    node *traverse ;
-    if(start->next==NULL)
-    {
-        delete start ;
-        start = NULL ;
-    }
-    else if(start!=NULL)
-    {
-        traverse = start ;
-        while(traverse->next->next!=NULL)
-        {
-            traverse = traverse->next ;
-        }
-        delete traverse->next ;
-        traverse->next = NULL ;
-    }
-}
 void SLL::deleteSpecific(node *t)
 {
     node *traverse ;
-    if(start==t)
+    traverse = start ;
+    if(start==NULL)
+    cout << "Empty list" << endl ; 
+    else if(start==t)
     {
         start = t->next ;
         delete t ;
     }
-    else if(start!=NULL)
+    else
     {
-        traverse = start ;
         while(traverse->next!=t)
         {
             traverse = traverse->next ;
@@ -120,6 +61,41 @@ void SLL::deleteSpecific(node *t)
         traverse->next = t->next ;
         delete t ;
     }
+}
+void SLL::deleteLast()
+{
+    node *traverse ;
+    traverse = start ;
+    if(start==NULL)
+    cout << "\nEmpty list\n" ;
+    else if(start->next==NULL)
+    {
+        delete start ;
+        start = NULL ;
+    }
+    else
+    {
+        while(traverse->next->next!=NULL)
+        { traverse = traverse->next ; }
+        delete traverse->next ;
+        traverse->next = NULL ;
+    }
+}
+void SLL::deleteFirst()
+{
+    if(start!=NULL)
+    {
+        node *temp = start->next ;
+        delete start ;
+        start = temp ;
+    }
+}
+void SLL::insertAfter(int item , node *t)
+{
+    node * x = new node ;
+    x->data = item ;
+    x->next = t->next ;
+    t->next = x ;
 }
 node * SLL::search(int item)
 {
@@ -131,5 +107,28 @@ node * SLL::search(int item)
         return traverse ;
         traverse = traverse->next ;
     }
-    return NULL ;
+    return traverse ;
+}
+void SLL::insertAtStart(int item)
+{
+    node *x = new node ;
+    x->data = item ;
+    x->next = start ;
+    start = x ;
+}
+void SLL::insertAtLast(int item)
+{
+    node * temp ;
+    node *x = new node ;
+    x->data = item ;
+    x->next = NULL ;
+    if(start==NULL)
+    start = x ;
+    else
+    {
+        temp = start ;
+        while(temp->next!=NULL)
+        temp = temp->next ;
+        temp->next = x ;
+    }
 }
