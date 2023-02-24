@@ -1,0 +1,85 @@
+#include<bits/stdc++.h>
+using namespace std ; 
+struct node 
+{
+    int data ;
+    node *next ;
+};
+class ADD
+{
+    private:    
+        node *start ;
+    public:
+        ADD() { start = NULL ; }
+        void insert(int);
+        ADD operator+(ADD);
+        node * getStart(){ return start; }
+};
+void ADD::insert(int item)
+{
+    node *n = new node ;
+    n->data = item ;
+    if(start==NULL)
+    {
+        n->next = NULL ;
+        start = n ;
+    }
+    else
+    {
+        node *t = start ;
+        while(t->next!=NULL)
+            t = t->next ;
+        t->next = n ;
+        n->next = NULL ;
+    }
+}
+ADD ADD::operator+(ADD obj)
+{
+    ADD ob ;
+    node *t1 = this->start , *t2 = obj.start ;
+    int x = 0 , carry =0 ;
+    while(t1!=NULL && t2!=NULL)
+    {
+        x = t1->data + t2->data ;
+        if(x>9)
+        {
+            x = x + carry ;
+            carry = (x/10) ;
+            x = x % 10 ;
+        }
+        else
+            x = (x+carry) % 10 ;
+        ob.insert(x);
+        t1 = t1->next ;
+        t2 = t2->next ;
+    }
+    if(t1!=NULL)
+    {
+        while(t1)
+        {
+            x = t1->data ;
+            if(carry)
+            {
+                x = x + carry ;
+                carry-- ;
+            }
+            ob.insert(x);
+            t1 = t1->next ;
+        }
+    }
+    else if(t2!=NULL)
+    {
+        while(t2)
+        {
+            x = t2->data ;
+            if(carry)
+            {
+                x = x + carry ;
+                carry--;
+            }
+            ob.insert(x);
+            t2 = t2->next ;
+        }
+    }
+    return ob ;
+}
