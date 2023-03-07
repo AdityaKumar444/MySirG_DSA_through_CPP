@@ -1,0 +1,104 @@
+#include<bits/stdc++.h>
+using namespace std ; 
+double evaluatePostfix(string);
+struct node
+{
+    double data ;
+    node *next ;
+};
+class Stack
+{
+    private:
+        node *top ;
+    public:
+        Stack() { top = NULL ;}
+        void push(double);
+        double peek();
+        void pop();
+        bool isEmpty();
+        ~Stack()
+        {
+            while(top)
+                pop();
+        }
+};
+void Stack::push(double item)
+{
+    node *x = new node ;
+    x->data = item ;
+    x->next = top ;
+    top = x ;
+}
+double Stack::peek()
+{
+    if(top)
+        return top->data ;
+    return INT_MIN ;
+}
+void Stack::pop()
+{
+    if(top)
+    {
+        node *temp = top ;
+        top = top->next ;
+        delete temp ;   
+    }
+}
+bool Stack::isEmpty()
+{
+    if(top==NULL)
+        return true ;
+    return false ;
+}
+double evaluatePostfix(string str)
+{
+    Stack s ;
+    double a , b , value , x ;
+    for(int i=0 ; i<str.length() ; i++)
+    {
+        if(str[i]>='0' && str[i]<='9')
+            s.push(str[i]-'0');
+        else
+        {
+            if(str[i]=='+')
+            {
+                a = s.peek() ;
+                s.pop();
+                b = s.peek() ;
+                s.pop() ;
+                x = b+a ;
+                s.push(x);
+            }
+            else if(str[i]=='-')
+            {
+                a = s.peek() ;
+                s.pop();
+                b = s.peek() ;
+                s.pop() ;
+                x = b-a ;
+                s.push(x);
+            }
+            else if(str[i]=='*')
+            {
+                a = s.peek() ;
+                s.pop();
+                b = s.peek() ;
+                s.pop() ;
+                x = b*a ;
+                s.push(x);
+            }
+            else if(str[i]=='/')
+            {
+                a = s.peek() ;
+                s.pop();
+                b = s.peek() ;
+                s.pop() ;
+                x = b/a ;
+                s.push(x);
+            }
+        }
+    }
+    value = s.peek() ;
+    s.pop();
+    return value ;
+}
