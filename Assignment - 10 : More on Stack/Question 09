@@ -1,0 +1,101 @@
+#include<bits/stdc++.h>
+using namespace std ; 
+string toPostfix(string);
+int checkPrecedence(char);
+struct node
+{
+    char data ;
+    node *next ;
+};
+class Stack
+{
+    private:
+        node *top ;
+    public:
+        Stack() { top = NULL ;}
+        void push(char);
+        char peek();
+        void pop();
+        bool isEmpty();
+        void reverse();
+        ~Stack()
+        {
+            while(top)
+                pop();
+        }
+};
+void Stack::push(char item)
+{
+    node *x = new node ;
+    x->data = item ;
+    x->next = top ;
+    top = x ;
+}
+char Stack::peek()
+{
+    if(top)
+        return top->data ;
+    return '~' ;
+}
+void Stack::pop()
+{
+    if(top)
+    {
+        node *temp = top ;
+        top = top->next ;
+        delete temp ;   
+    }
+}
+bool Stack::isEmpty()
+{
+    if(top==NULL)
+        return true ;
+    return false ;
+}
+int checkPrecedence(char c)
+{
+    if(c=='^')
+        return 3 ;
+    else if(c=='*' || c=='/')
+        return 2 ;
+    else if(c=='+' || c=='-')
+        return 1 ;
+    return -1 ;
+}
+string toPostfix(string str)
+{
+    string res ;
+    Stack s ;
+    for(int i=0 ; i<str.length() ; i++)
+    {
+        if((str[i]>='A' && str[i]<='Z')||(str[i]>='a' && str[i]<='z'))
+            res = res + str[i] ;
+        else if(str[i]=='(')
+            s.push(str[i]);
+        else if(str[i]==')')
+        {
+            while(!s.isEmpty() && s.peek()!='(')
+            {
+                res = res + s.peek() ;
+                s.pop();
+            }
+            if(!s.isEmpty())
+                s.pop();
+        }
+        else
+        {
+            while(!s.isEmpty() && checkPrecedence(str[i]) < checkPrecedence(s.peek()))
+            {
+                res = res + s.peek() ;
+                s.pop();
+            }
+            s.push(str[i]);
+        }
+    }
+    while(!s.isEmpty())
+    {
+        res = res + s.peek() ;
+        s.pop();
+    }
+    return res ;
+}
