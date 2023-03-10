@@ -1,0 +1,53 @@
+#include<bits/stdc++.h>
+using namespace std ;
+queue<int> sortDescending(queue<int> &);
+queue<int> sortDescending(queue<int> &q1)
+{
+    queue<int> q2 , q3 ;
+    while(!q1.empty())
+    {
+        if(q2.empty())
+            q2.push(q1.front());
+        else if(q1.front() < q2.back())
+            q2.push(q1.front());
+        else
+        {
+            while(q2.front() > q1.front())
+            {
+                q3.push(q2.front());
+                q2.pop();
+            }
+            q3.push(q1.front());
+            while(!q2.empty())
+            {
+                q3.push(q2.front());
+                q2.pop();
+            }
+            while(!q3.empty())
+            {
+                q2.push(q3.front());
+                q3.pop();
+            }
+        }
+        q1.pop();
+    }
+    return q2 ;
+}
+int main()
+{
+    queue<int> q ;
+    q.push(18);
+    q.push(15);
+    q.push(16);
+    q.push(22);
+    q.push(51);
+    cout << q.front() << endl ;
+    queue<int> s ;
+    s = sortDescending(q);
+    while(!s.empty())
+    {
+        cout << s.front() << " " ;
+        s.pop();
+    }
+    return 0 ;
+}
