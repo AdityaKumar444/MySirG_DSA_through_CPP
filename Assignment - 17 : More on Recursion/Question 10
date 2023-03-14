@@ -1,0 +1,11 @@
+#include<bits/stdc++.h>
+using namespace std ;
+long long calc_power(int,int); 
+long long calc_power(int num ,int pow)
+{
+    long long ans = 1 ;
+    if(pow==1)
+        return num ;
+    ans = num * calc_power(num,pow-1);
+    return ans ;
+}
