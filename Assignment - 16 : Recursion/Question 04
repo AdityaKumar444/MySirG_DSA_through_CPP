@@ -1,0 +1,9 @@
+#include<bits/stdc++.h>
+using namespace std ; 
+void oddRev(int);
+void oddRev(int n)
+{
+    cout << 2*n-1 << " " ;
+    if(n!=1)
+        oddRev(n-1);
+}
