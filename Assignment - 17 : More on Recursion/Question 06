@@ -1,0 +1,11 @@
+#include<bits/stdc++.h>
+using namespace std ;
+int sumOfDigits(int); 
+int sumOfDigits(int n)
+{
+    int sum = 0 ;
+    if(n%10==0)
+        return n ;
+    sum = n%10 + sumOfDigits(n/10);
+    return sum ;
+} 
