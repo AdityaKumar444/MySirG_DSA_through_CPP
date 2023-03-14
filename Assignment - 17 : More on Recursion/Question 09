@@ -1,0 +1,13 @@
+#include<bits/stdc++.h>
+using namespace std ; 
+int HCF(int,int);
+int HCF(int a , int b)
+{
+    if(a>b)
+        a = a-b ; 
+    else if(b>a)
+        b = b-a ;
+    if(a==b)
+        return a ;
+    return HCF(a,b);
+}
