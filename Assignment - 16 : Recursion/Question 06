@@ -1,0 +1,9 @@
+#include<bits/stdc++.h>
+using namespace std ; 
+void evenRev(int);
+void evenRev(int n)
+{
+    cout << 2*n << " " ;
+    if(n!=1)
+        evenRev(n-1);
+}
