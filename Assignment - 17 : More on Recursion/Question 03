@@ -1,0 +1,11 @@
+#include<bits/stdc++.h>
+using namespace std ; 
+int sumEvenNatural(int);
+int sumEvenNatural(int n)
+{
+    int sum = 0 ;
+    if(n==1)
+        return 2*n ;
+    sum = 2*n + sumEvenNatural(n-1);
+    return sum ;
+}
