@@ -1,0 +1,11 @@
+#include<bits/stdc++.h>
+using namespace std ;
+int sumNatural(int); 
+int sumNatural(int N)
+{
+    int sum = 0 ;
+    if(N==1)
+        return 1 ;
+    sum = N + sumNatural(N-1);
+    return sum ;
+}
