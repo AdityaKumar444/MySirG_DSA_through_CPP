@@ -1,0 +1,9 @@
+#include<bits/stdc++.h>
+using namespace std ;
+void squaresRev(int); 
+void squaresRev(int n)
+{
+    cout << n*n << " " ;
+    if(n!=1)
+        squaresRev(n-1);  
+} 
