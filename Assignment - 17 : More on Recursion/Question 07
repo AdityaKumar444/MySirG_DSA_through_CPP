@@ -1,0 +1,17 @@
+#include<bits/stdc++.h>
+using namespace std ; 
+void decimalToBinary(int);
+void decimalToBinary(int n)
+{
+    int k ;
+    if(n==1)
+        k = 1 ;
+    else
+    {
+        k = n%2 ;
+        if(n%2!=0)
+            n--;
+        decimalToBinary(n/2);
+    }
+    cout << k ;
+}
