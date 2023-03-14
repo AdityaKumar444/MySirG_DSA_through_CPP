@@ -1,0 +1,11 @@
+#include<bits/stdc++.h>
+using namespace std ; 
+int sumSquares(int);
+int sumSquares(int n)
+{
+    int sum = 0 ;
+    if(n==1)
+        return n*n ;
+    sum = n*n + sumSquares(n-1);
+    return sum ;
+}
