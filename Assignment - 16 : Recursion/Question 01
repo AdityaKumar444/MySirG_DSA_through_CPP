@@ -1,0 +1,9 @@
+#include<bits/stdc++.h>
+using namespace std ; 
+void natural(int);
+void natural(int n)
+{
+    if(n!=1)
+        natural(n-1);
+    cout << n << " " ;
+}
