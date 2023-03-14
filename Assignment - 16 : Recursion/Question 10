@@ -1,0 +1,9 @@
+#include<bits/stdc++.h>
+using namespace std ;
+void cubesRev(int); 
+void cubesRev(int n)
+{
+    cout << n*n*n << " " ;
+    if(n!=1)
+        cubesRev(n-1);  
+} 
