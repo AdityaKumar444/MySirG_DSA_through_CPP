@@ -2,7 +2,7 @@ Question 01-10.cpp is provided in folder
 
 #include"Question 01-10.cpp"
 queue<int> level_order(node *,int);
-void print_elements_AtLevel(node *,int,queue<int> &);
+void elements_AtLevel(node *,int,queue<int> &);
 int height(node*);
 int height(node *ptr)
 {
@@ -17,7 +17,7 @@ int height(node *ptr)
         ht = rtree  + 1 ;
     return ht ;
 }
-void print_elements_AtLevel(node *ptr , int level , queue<int> &q)
+void elements_AtLevel(node *ptr , int level , queue<int> &q)
 {
     if(level==0 && ptr!=NULL)
     {
@@ -25,8 +25,8 @@ void print_elements_AtLevel(node *ptr , int level , queue<int> &q)
     }
     if(level!=0 && ptr!=NULL)
     {
-        print_elements_AtLevel(ptr->left , level-1 , q);
-        print_elements_AtLevel(ptr->right , level-1 , q);
+        elements_AtLevel(ptr->left , level-1 , q);
+        elements_AtLevel(ptr->right , level-1 , q);
     }
 }
 queue<int> level_order(node * ptr , int height)
