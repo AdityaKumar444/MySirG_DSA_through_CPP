@@ -26,9 +26,9 @@ int partition(int *arr , int low , int high)        // partition function to fix
         while(arr[back] > pivot)                    // iterating until second pointer element is greater than pivot
             back--;
         if(forw < back)                             // if first pointer's position is less than second, then swapping the
-            Swap(arr,forw,back);                          // elements to arrange them in a fashion such that elements smaller than
+            Swap(arr,forw,back);                    // elements to arrange them in a fashion such that elements smaller than
     }                                               // pivot will be on left and greater will be on right
-    Swap(arr,low,back);                                // Now swapping the pivot with second pointer to fix it's right position
+    Swap(arr,low,back);                             // Now swapping the pivot with second pointer to fix it's right position
     return back ;
 }
 void Swap(int *arr , int i , int j)                 // swap function to swap elememts at given indexes
