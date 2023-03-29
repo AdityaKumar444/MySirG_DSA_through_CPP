@@ -1,0 +1,80 @@
+#include<bits/stdc++.h>
+using namespace std ;
+class Employee
+{
+    private:
+        int empId ;
+        string name ;
+        double salary ;
+    public:
+        void setId(int id){ empId = id ;}
+        void setSalary(double slry){salary = slry ;}
+        void setName(string n){name = n ;}
+        int getId(){ return empId ; }
+        string getName() { return name ; }
+        double getSalary() { return salary ; }
+};
+void Sort(Employee[] ,int ,int);
+int partition(Employee [] , int , int);
+void Swap(Employee [] , int, int);
+void sortByName(Employee E[],int size)
+{
+    Sort(E,0,size-1);
+}
+void SetData(Employee &E , int id , char n[] ,double salary)
+{
+    E.setId(id);
+    E.setName(n);
+    E.setSalary(salary);
+}
+void Sort(Employee arr[] , int low , int high)       
+{
+    if(low < high)
+    {
+        int pivot = partition(arr,low,high);       
+        Sort(arr, low, pivot-1);                    
+        Sort(arr, pivot+1, high);               
+    }
+    return;
+} 
+int partition(Employee arr[] , int low , int high)       
+{
+    int forw , back ;                         
+    forw = low ;
+    back = high ;
+    string pivot = arr[forw].getName();           
+    while(forw < back)                      
+    {
+        while( arr[forw].getName().compare(pivot) <= 0)         
+            forw++;
+        while(arr[back].getName().compare(pivot) > 0)           
+            back--;
+        if(forw < back)                
+            Swap(arr,forw,back);      
+    }                                 
+    Swap(arr,low,back);                         
+    return back ;
+}
+void Swap(Employee arr[] , int i , int j) 
+{
+    Employee temp ;
+    temp = arr[i] ;
+    arr[i] = arr[j] ;
+    arr[j] = temp ;
+} 
+int main()
+{
+    Employee E[5] ;
+    SetData(E[0],101,"Rahul",35425);
+    SetData(E[1],104,"Ajay",55405);
+    SetData(E[2],103,"Nirmal",75500);
+    SetData(E[3],102,"Shubham",35000);
+    SetData(E[4],105,"Pranav",54000);
+    sortByName(E,5);
+    cout << endl << "ID" << "   " << "Salary" << "    " << "Name" << endl;
+    for(int i=0 ; i<5 ; i++)
+    {
+        cout << endl ;
+        cout << E[i].getName() << "     " << E[i].getId() << "   " << E[i].getSalary() ;
+    }
+}
