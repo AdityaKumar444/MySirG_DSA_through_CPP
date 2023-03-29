@@ -1,0 +1,99 @@
+#include<bits/stdc++.h>
+using namespace std ;
+class Employee
+{
+    private:
+        int empId ;
+        string name ;
+        double salary ;
+    public:
+        void setData(int id, string n , double slry)
+        {
+            empId = id  ;
+            name = n ;
+            salary = slry ;
+        }
+        int getId(){ return empId ; }
+        string getName() { return name ; }
+        double getSalary() { return salary ; }
+};
+void mergeSorted(Employee [],int,int,int);
+void Sort(Employee [],int,int);
+void sortBySalary(Employee E[],int size)
+{
+    Sort(E,0,size-1);
+}
+void Sort(Employee arr[], int start, int end)
+{
+    if(start < end)                 
+    {
+        int mid = (start + end) / 2 ;
+        Sort(arr,start,mid);         
+        Sort(arr,mid+1,end);         
+        mergeSorted(arr,start,mid,end);
+    }
+}
+void mergeSorted(Employee arr[], int start, int mid, int end)
+{
+    int len1 = mid - start + 1 ;       
+    int len2 = end - mid ;             
+    Employee arr1[len1];         
+    Employee arr2[len2];         
+    int mainIndex = start ;            
+    for(int i=0 ; i<len1 ; i++)
+    {
+        arr1[i] = arr[mainIndex] ;
+        mainIndex++;
+    }
+    mainIndex = mid + 1 ;         
+    for(int i=0 ; i<len2 ; i++)
+    {
+        arr2[i] = arr[mainIndex] ;
+        mainIndex++;
+    }
+    int index1 = 0 ;              
+    int index2 = 0 ;              
+    mainIndex = start ;           
+    while(index1 < len1 && index2 < len2)
+    {
+        if(arr1[index1].getSalary() < arr2[index2].getSalary())  
+        {
+            arr[mainIndex] = arr1[index1] ;
+            index1++;
+        }
+        else                             
+        {
+            arr[mainIndex] = arr2[index2] ;
+            index2++;
+        }
+        mainIndex++;                      
+    }
+    while(index1 < len1)                 
+    {
+        arr[mainIndex] = arr1[index1];
+        mainIndex++;
+        index1++;
+    }
+    while(index2 < len2)                 
+    {
+        arr[mainIndex] = arr2[index2];
+        mainIndex++;
+        index2++;
+    }                    
+}
+int main()
+{
+    Employee E[5] ;
+    E[0].setData(101,"Rahul",35425);
+    E[1].setData(104,"Ajay",55405);
+    E[2].setData(103,"Nirmal",75500);
+    E[3].setData(105,"Shubham",35000);
+    E[4].setData(102,"Pranav",54000);
+    sortBySalary(E,5);
+    cout << endl << "ID" << "   " << "Salary" << "    " << "Name" << endl;
+    for(int i=0 ; i<5 ; i++)
+    {
+        cout << endl ;
+        cout << E[i].getId() << "   " << E[i].getSalary() << "    " << E[i].getName() ;
+    }
+}
