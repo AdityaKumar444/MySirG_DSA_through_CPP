@@ -2,7 +2,7 @@ Assignment-23: Heap
 
 1. Define a class Heap (implement same as dynamic array).
 
-2. In question-1, define a constructor ti initialise member variables.
+2. In question-1, define a constructor to initialise member variables.
 
 3. In question-1, define a method insert() to insert a new element in the heap.
 
