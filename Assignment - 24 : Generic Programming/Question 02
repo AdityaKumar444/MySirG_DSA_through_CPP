@@ -1,0 +1,9 @@
+#include<bits/stdc++.h>
+using namespace std ; 
+template<typename x>
+void printArray(x arr[] , int size)
+{
+    for(int i=0 ; i<size ; i++)
+        cout << arr[i] << " " ;
+    cout << endl ;
+}
