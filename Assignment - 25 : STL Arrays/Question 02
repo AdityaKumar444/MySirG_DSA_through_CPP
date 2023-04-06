@@ -1,0 +1,12 @@
+#include<bits/stdc++.h>
+using namespace std ; 
+int main () 
+{
+    array<float,5> arr = {12.23 , 52.17 , 47.47 , 85.03 , 100.5} ;
+    float avg = 0 ;
+    for(auto x : arr)
+        avg = avg + x ;
+    avg = avg / 5 ;
+    cout << "Average is " << avg << endl ;
+    return 0 ; 
+}
