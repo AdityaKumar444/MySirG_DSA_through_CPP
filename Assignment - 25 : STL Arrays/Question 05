@@ -1,0 +1,14 @@
+#include<bits/stdc++.h>
+using namespace std ; 
+int main () 
+{
+    array<int,10> arr = {10 , 50 , -4 , -2 , 0 , 5 , 90 , 4 , 55 , 15};
+    cout << "Array before sorting" << endl ;
+    for (auto x : arr)
+        cout << x << " " ;
+    sort(arr.begin(),arr.end());
+    cout << "\n\nArray after sorting" << endl ;
+    for (auto x : arr)
+        cout << x << " " ;
+    return 0 ; 
+}
