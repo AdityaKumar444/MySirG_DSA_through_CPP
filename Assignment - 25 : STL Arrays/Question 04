@@ -1,0 +1,58 @@
+#include<bits/stdc++.h>
+using namespace std ;
+class Complex
+{
+    private:
+        int real , imag ;
+    public:
+        Complex(){}
+        void input(int a , int b)
+        {
+            real = a ;
+            imag = b ;
+        }
+        int getReal() { return real ; }
+        int getImag() { return imag ; } 
+        void display()
+        {
+            cout << real << " + " << imag << "i" << endl ;
+        }
+        Complex(const Complex &c)
+        {
+            real = c.real ;
+            imag = c.imag ;
+        }
+        Complex & operator=(const Complex &c)
+        {
+            real = c.real ;
+            imag = c.imag ;
+            return *this;
+        }
+};
+Complex calculate_sum(array<Complex,5> &arr)
+{
+    Complex c ;
+    int sumReal = 0 , sumImag = 0 ;
+    array<Complex,5>::iterator itr ;
+    for(itr=arr.begin() ; itr!=arr.end() ; itr++)
+    {
+        sumReal = sumReal + itr->getReal() ;
+        sumImag = sumImag + itr->getImag() ;
+    }
+    c.input(sumReal,sumImag);
+    return c ;
+}
+int main () 
+{
+    int real , imag ;
+    array<Complex,5> arr ;
+    for(int i=0 ; i<5 ; i++)
+    {
+        cin >> real >> imag ; 
+        arr[i].input(real,imag);
+    }
+    Complex d ;
+    d = calculate_sum(arr);
+    d.display();
+    return 0 ; 
+}
